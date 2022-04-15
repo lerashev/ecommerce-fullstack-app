@@ -22,9 +22,19 @@ Online store application built from scratch using React, Node and PostgreSQL
 
 ## Functionality
 
+### Front end:
+
 -   Collection Page
 -   Product page
 -   Filter facets
 -   Administration page
-    -   Product management
-    -   Category management
+-   Product management
+-   Category management
+
+### Back end:
+
+-   User authentication
+-   User group management
+-   Input validation
+-   Error handling
+-   CRUD operations
