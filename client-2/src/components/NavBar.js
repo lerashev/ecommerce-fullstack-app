@@ -20,7 +20,7 @@ const NavBar = observer(() => {
         <Navbar bg="dark" variant="dark">
             <Container>
                 <NavLink style={{ color: "white" }} to={SHOP_ROUTE}>
-                    Buy Device
+                    Energy Life
                 </NavLink>
                 {user.isAuth ? (
                     <Nav className="ml-auto" style={{ color: "white" }}>
@@ -35,7 +35,7 @@ const NavBar = observer(() => {
                             onClick={() => logOut()}
                             className="ml-2"
                         >
-                            Exit
+                            Logout
                         </Button>
                     </Nav>
                 ) : (

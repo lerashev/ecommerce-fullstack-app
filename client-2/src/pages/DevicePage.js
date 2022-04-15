@@ -1,76 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Col, Image, Row, Card } from "react-bootstrap";
-import BigStar from "../assets/BigStar.png";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { fetchOneDevice } from "../http/deviceAPI";
+import "./pages.css";
 
 const DevicePage = () => {
     // creating local state
     const [device, setDevice] = useState({ info: [] });
     const { id } = useParams();
 
+    console.log(device.info);
+
     useEffect(() => {
         fetchOneDevice(id).then((data) => setDevice(data));
     }, []);
 
     return (
-        <Container className="mt-3">
-            <Row>
-                <Col md={4}>
-                    <Image
-                        width={300}
-                        height={300}
-                        src={process.env.REACT_APP_API_URL + device.img}
-                    />
-                </Col>
-                <Col md={4}>
-                    <Row className="d-flex flex-column align-items-center">
-                        <h2>{device.name}</h2>
-                        <div
-                            className="d-flex align-items-center justify-content-center"
-                            style={{
-                                background: `url(${BigStar}) no-repeat center center`,
-                                width: 240,
-                                height: 240,
-                                backgroundSize: "cover",
-                                fontSize: 64,
-                            }}
-                        >
-                            {device.rating}
-                        </div>
-                    </Row>
-                </Col>
-                <Col md={4}>
-                    <Card
-                        className="d-flex flex-column align-items-center justify-content-center"
-                        style={{
-                            width: 300,
-                            height: 300,
-                            fontSize: 32,
-                            border: "5px solid lightgray",
-                        }}
-                    >
-                        <h3> From: ${device.price} </h3>
-                        <Button variant={"outline-dark"}> Add to cart</Button>
-                    </Card>
-                </Col>
-            </Row>
-            <Row className="d-flex flex-column m-3">
-                <h1> Characteristics </h1>
-                {device.info.map((info, index) => (
-                    <Row
-                        key={info.id}
-                        style={{
-                            background:
-                                index % 2 === 0 ? "lightgray" : "transparent",
-                            padding: 10,
-                        }}
-                    >
-                        {info.title}: {info.description}
-                    </Row>
-                ))}
-            </Row>
-        </Container>
+        <div className="pdp-container">
+            <div className="pdp-section">
+                <img
+                    className="pdp-image"
+                    src={process.env.REACT_APP_API_URL + device.img}
+                    alt="main"
+                />
+            </div>
+
+            <div className="pdp-section">
+                <h2>{device.name}</h2>
+                <h3> ${device.price}.00 </h3>
+                <div className="color-swatch-container">
+                    <div className="swatch blue" />
+                    <div className="swatch black" />
+                    <div className="swatch beige" />
+                    <div className="swatch violet" />
+                    <div className="swatch light-blue"></div>
+                </div>
+                <Button className="button" variant="outline-dark">
+                    Add to cart
+                </Button>
+            </div>
+            <div className="pdp-section full-width">
+                <h2> {device.info[0]?.description} </h2>
+                <span>{device.info[1]?.description}</span>
+            </div>
+        </div>
     );
 };
 
