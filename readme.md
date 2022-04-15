@@ -2,6 +2,8 @@
 
 Online store application built from scratch using React, Node and PostgreSQL
 
+<img src="pdp.png" align="right" width="60%"/>
+
 ## Technologies used
 
 ### Front end:
